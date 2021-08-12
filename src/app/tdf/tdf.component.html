@@ -1,0 +1,45 @@
+<p>tdf works!</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <h1 class="page-title">User Registration</h1>
+            <form #myform='ngForm' (ngSubmit)="onSubmit(myform)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username"  #uname="ngModel" required   pattern="^[a-zA-z]+$" [(ngModel)]="userform.username" />
+                    <div *ngIf="!uname?.valid && (uname?.dirty || uname?.touched)">
+                       invalid username
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" #email="ngModel"  minlength="10" required email [(ngModel)]="userform.email"/>
+                    {{email.valid}} {{email.touched}} {{email.pristine}}
+                    <div *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                        invalid username
+                        
+ 
+                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" #pwd="ngModel" minlength="10" required [(ngModel)]="userform.password" />
+                    {{pwd.valid}} {{pwd.touched}} {{pwd.pristine}}
+                    
+                </div>
+                  {{myform.value | json}}
+                  <p>{{myform.valid}}</p>
+                  <p>{{myform.invalid}}</p>
+                  <p>{{myform.pristine}}</p>
+                  <p>{{myform.dirty}}</p>
+                  <p>{{myform.touched}}</p>
+                  <p>{{myform.untouched}}</p>
+                <button type="submit" class="btn btn-warning">
+                    Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
